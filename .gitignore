@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+data/*.db
+.DS_Store
+
+# 打包產物（改用 GitHub Release 附檔）
+build/
+desktop/dist/
+desktop/*.iconset/
+desktop/icon.icns
+desktop/icon-1024.png

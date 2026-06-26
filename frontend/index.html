@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台股模擬交易桌</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="apple-touch-icon" href="/static/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <!-- 跑馬燈報價 -->
+  <div class="ticker" id="ticker"><div class="ticker-track" id="ticker-track"></div></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="mark">TWSE<em>·</em>DESK</span>
+      <span class="brand-sub">台股模擬交易桌</span>
+    </div>
+    <div class="topbar-right">
+      <span class="clock" id="clock">--:--:--</span>
+      <span class="status-pill" id="market-badge"><i class="dot"></i><b>—</b></span>
+      <span class="poll">報價更新 <b id="last-poll">—</b></span>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button data-tab="trade" class="active">交易台</button>
+    <button data-tab="scen">🎰 妖股對照組</button>
+  </nav>
+
+  <main>
+   <div class="tab-panel" id="tab-trade">
+    <!-- 帳戶：未開始顯示存款 hero；已開始顯示總覽 -->
+    <section class="account-bar">
+      <!-- 未開始 -->
+      <div id="start-hero" class="start-hero hidden">
+        <div class="hero-copy">
+          <h2>轉入存款，開始模擬</h2>
+          <p>輸入你要投入的本金，沒有預設金額。之後隨時可再存入加碼。</p>
+        </div>
+        <div class="hero-form">
+          <div class="money-input">
+            <span>NT$</span>
+            <input id="deposit-input" type="number" placeholder="輸入金額，例如 100000" min="1" step="1000" />
+          </div>
+          <button id="deposit-start-btn" class="btn-gold">存入並開始</button>
+        </div>
+      </div>
+
+      <!-- 已開始 -->
+      <div id="summary" class="summary hidden">
+        <div class="stat stat-hero">
+          <label>總資產 NT$</label>
+          <b id="s-total">—</b>
+          <span class="stat-sub" id="s-pnl">—</span>
+        </div>
+        <div class="stat"><label>現金</label><b id="s-cash">—</b></div>
+        <div class="stat"><label>持股市值</label><b id="s-mv">—</b></div>
+        <div class="stat"><label>未實現損益</label><b id="s-unreal">—</b></div>
+        <div class="stat"><label>已實現損益</label><b id="s-real">—</b></div>
+        <div class="stat stat-actions">
+          <label>本金 <span id="s-initial" class="dim"></span></label>
+          <div class="mini-deposit">
+            <input id="add-deposit" type="number" placeholder="再存入" min="1" step="1000" />
+            <button id="add-deposit-btn">＋</button>
+          </div>
+          <button id="reset-btn" class="reset-link">清空重來</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="cols">
+      <!-- 交易面板 -->
+      <section class="panel trade">
+        <h3 class="panel-title">下單 <span class="dim">／ 先查代碼，看價再決定</span></h3>
+
+        <div class="lookup">
+          <input id="o-code" placeholder="輸入股票 / ETF 代碼，如 2330、0050" autocomplete="off" />
+          <button id="lookup-btn">查詢報價</button>
+        </div>
+        <div id="lookup-msg" class="msg"></div>
+
+        <!-- 報價卡（查詢後出現） -->
+        <div id="quote-card" class="quote-card hidden">
+          <div class="qc-head">
+            <div class="qc-id"><b id="qc-name">—</b><span id="qc-code" class="dim"></span><span id="qc-type" class="tag"></span></div>
+            <div class="qc-price">
+              <b id="qc-last">—</b>
+              <span id="qc-chg" class="qc-chg">—</span>
+            </div>
+          </div>
+          <div class="qc-range">
+            <span class="qc-down" id="qc-limdn">—</span>
+            <div class="qc-bar"><i id="qc-marker"></i></div>
+            <span class="qc-up" id="qc-limup">—</span>
+          </div>
+          <div class="qc-book">
+            <div class="bk bid"><label>委買</label><b id="qc-bid">—</b></div>
+            <div class="bk"><label>開</label><b id="qc-open">—</b></div>
+            <div class="bk"><label>高</label><b id="qc-high">—</b></div>
+            <div class="bk"><label>低</label><b id="qc-low">—</b></div>
+            <div class="bk ask"><label>委賣</label><b id="qc-ask">—</b></div>
+          </div>
+
+          <div class="qc-chart-wrap">
+            <div class="qc-chart-label">日 K 線 <span class="dim">近 3 個月</span></div>
+            <div id="qc-chart" class="qc-chart"></div>
+          </div>
+
+          <!-- 買賣決策 -->
+          <div class="order-controls">
+            <div class="seg side" id="o-side">
+              <button data-v="buy" class="active">買進</button>
+              <button data-v="sell">賣出</button>
+            </div>
+            <div class="seg" id="o-lot">
+              <button data-v="round" class="active">整股（張）</button>
+              <button data-v="odd">零股（股）</button>
+            </div>
+            <div id="o-sellable" class="sellable hidden">可賣 <b id="o-max">—</b><button id="o-max-btn" type="button">全部</button></div>
+            <div class="order-line">
+              <input id="o-qty" type="number" value="1" min="1" placeholder="張數" />
+              <input id="o-price" type="number" step="0.01" placeholder="限價（空白＝市價）" />
+            </div>
+            <div id="o-estimate" class="estimate">—</div>
+            <button id="o-submit" class="btn-trade buy">送出委託</button>
+            <div id="order-msg" class="msg"></div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="side-col">
+        <!-- 自選股 -->
+        <section class="panel">
+          <h3 class="panel-title">自選股</h3>
+          <div class="lookup small">
+            <input id="w-code" placeholder="加入代碼，可貼多檔（2330 0050 00878）" autocomplete="off" />
+            <button id="w-add">加入</button>
+          </div>
+          <table class="data-table"><tbody id="watch-body"></tbody></table>
+        </section>
+      </aside>
+    </div>
+
+    <!-- 預約委託（庫存上方） -->
+    <section class="panel">
+      <h3 class="panel-title">預約委託 <span class="dim" id="pending-sub">／ 收盤下單，開盤成交</span></h3>
+      <div id="pending-list" class="pending-list"><p class="empty">無預約委託</p></div>
+    </section>
+
+    <!-- 庫存 -->
+    <section class="panel">
+      <h3 class="panel-title">庫存部位</h3>
+      <table class="data-table holdings">
+        <thead><tr>
+          <th>代碼</th><th>名稱</th><th>股數</th><th>均價</th><th>現價</th>
+          <th>市值</th><th>未實現</th><th>報酬</th><th>操作</th>
+        </tr></thead>
+        <tbody id="holdings-body"></tbody>
+      </table>
+    </section>
+
+    <!-- 交易紀錄 -->
+    <section class="panel">
+      <h3 class="panel-title">交易紀錄</h3>
+      <table class="data-table">
+        <thead><tr>
+          <th>時間</th><th>代碼</th><th>買賣</th><th>類別</th><th>股數</th>
+          <th>價格</th><th>手續費</th><th>稅</th><th>現金</th><th>已實現</th>
+        </tr></thead>
+        <tbody id="tx-body"></tbody>
+      </table>
+    </section>
+   </div><!-- /tab-trade -->
+
+   <div class="tab-panel hidden" id="tab-scen">
+    <section class="panel scen-hero">
+      <h3 class="panel-title">🎰 妖股對照組 <span class="dim" id="scen-sub">／ 同樣 15,000 起跑</span></h3>
+      <p class="scen-intro">同一筆 15,000，兩種完全相反的玩法各跑一條線。進場價已鎖定在建立當天，
+        之後隨行情變化——直接看「分散低波」和「妖股集中」拉開多少差距。<b id="scen-diff"></b></p>
+      <div id="scen-cards" class="scen-cards"><p class="empty">載入中…</p></div>
+      <div class="scen-trend">
+        <div class="scen-trend-head">累積報酬走勢 <span class="dim">每日記一點，<span style="color:var(--accent)">■</span> 分散低波　<span style="color:var(--up)">■</span> 妖股集中</span></div>
+        <div id="scen-chart"></div>
+      </div>
+      <p class="muted scen-note">※ 進場價自建立日鎖定，報酬隨即時報價更新。這是紙錢對照實驗，非投資建議。</p>
+    </section>
+   </div><!-- /tab-scen -->
+  </main>
+
+  <footer class="datasrc">
+    <div class="ds-info">💾 資料來源：<b id="ds-path">—</b> <span class="dim" id="ds-ts"></span></div>
+    <div class="ds-import">
+      <input id="import-path" class="hidden" placeholder="貼上投資資料 .json 完整路徑" autocomplete="off" />
+      <button id="import-go" class="hidden">讀入</button>
+      <button id="import-toggle">讀入投資資訊</button>
+    </div>
+  </footer>
+  <div id="import-msg" class="ds-msg"></div>
+
+  <!-- 刪除確認（反覆警告） -->
+  <div id="reset-overlay" class="overlay hidden">
+    <div class="dialog">
+      <h3 id="rd-title">⚠ 確定要清空所有資料？</h3>
+      <p id="rd-body">這會永久刪除你的<b>存款、庫存、交易紀錄與預約委託</b>，且無法復原。自選股也會一併清除。</p>
+      <div id="rd-step2" class="hidden">
+        <div class="warn-box">最後確認：請在下方輸入「<b>刪除</b>」兩個字以執行。</div>
+        <input id="rd-confirm" placeholder="輸入：刪除" autocomplete="off" />
+      </div>
+      <div class="dialog-actions">
+        <button class="btn-cancel" id="rd-cancel">取消，保留資料</button>
+        <button class="btn-danger" id="rd-next">我了解，繼續</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <style>
+    .bg { fill: #0e1116; }
+    .ring { stroke: #e6b450; stroke-opacity: .35; }
+    @media (prefers-color-scheme: light) {
+      .bg { fill: #f5f2ea; }
+      .ring { stroke: #c79a3a; stroke-opacity: .55; }
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="14"/>
+  <rect class="ring" x="1" y="1" width="62" height="62" rx="13" fill="none" stroke-width="2"/>
+  <!-- 綠跌 K 棒（左、較短）-->
+  <line x1="22" y1="15" x2="22" y2="49" stroke="#34c08e" stroke-width="3" stroke-linecap="round"/>
+  <rect x="15" y="23" width="14" height="19" rx="3" fill="#34c08e"/>
+  <!-- 紅漲 K 棒（右、較高）-->
+  <line x1="44" y1="10" x2="44" y2="54" stroke="#f0606f" stroke-width="3" stroke-linecap="round"/>
+  <rect x="37" y="18" width="14" height="27" rx="3" fill="#f0606f"/>
+</svg>

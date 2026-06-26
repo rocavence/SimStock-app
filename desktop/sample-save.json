@@ -1,0 +1,432 @@
+{
+  "version": 1,
+  "saved_at": "2026-06-26T17:24:01",
+  "account": {
+    "id": 1,
+    "cash": 1529.5499999999984,
+    "initial_deposit": 15000.0,
+    "realized_pnl": 0.0,
+    "created_at": "2026-06-08T00:56:59.534909"
+  },
+  "securities": [
+    {
+      "code": "00646",
+      "name": "元大S&P500",
+      "market": "tse",
+      "sec_type": "etf"
+    },
+    {
+      "code": "2330",
+      "name": "台積電",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "0050",
+      "name": "元大台灣50",
+      "market": "tse",
+      "sec_type": "etf"
+    },
+    {
+      "code": "00878",
+      "name": "國泰永續高股息",
+      "market": "tse",
+      "sec_type": "etf"
+    },
+    {
+      "code": "00919",
+      "name": "群益台灣精選高息",
+      "market": "tse",
+      "sec_type": "etf"
+    },
+    {
+      "code": "00981A",
+      "name": "主動統一台股增長",
+      "market": "tse",
+      "sec_type": "etf"
+    },
+    {
+      "code": "3481",
+      "name": "群創",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "6116",
+      "name": "彩晶",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "00679B",
+      "name": "元大美債20年",
+      "market": "otc",
+      "sec_type": "bond_etf"
+    },
+    {
+      "code": "00772B",
+      "name": "中信高評級公司債",
+      "market": "otc",
+      "sec_type": "bond_etf"
+    },
+    {
+      "code": "00713",
+      "name": "元大台灣高息低波",
+      "market": "tse",
+      "sec_type": "etf"
+    },
+    {
+      "code": "00635U",
+      "name": "期元大S&P黃金",
+      "market": "tse",
+      "sec_type": "etf"
+    },
+    {
+      "code": "00908",
+      "name": "富邦入息REITs+",
+      "market": "tse",
+      "sec_type": "etf"
+    },
+    {
+      "code": "2313",
+      "name": "華通",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "3491",
+      "name": "昇達科",
+      "market": "otc",
+      "sec_type": "stock"
+    },
+    {
+      "code": "3163",
+      "name": "波若威",
+      "market": "otc",
+      "sec_type": "stock"
+    },
+    {
+      "code": "6285",
+      "name": "啟碁",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "2314",
+      "name": "台揚",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "2367",
+      "name": "燿華",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "6770",
+      "name": "力積電",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "3711",
+      "name": "日月光投控",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "3305",
+      "name": "昇貿",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "2408",
+      "name": "南亞科",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "1718",
+      "name": "中纖",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "2454",
+      "name": "聯發科",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "6505",
+      "name": "台塑化",
+      "market": "tse",
+      "sec_type": "stock"
+    },
+    {
+      "code": "2603",
+      "name": "長榮",
+      "market": "tse",
+      "sec_type": "stock"
+    }
+  ],
+  "holdings": [
+    {
+      "code": "00772B",
+      "shares": 102,
+      "avg_cost": 33.58921568627451
+    },
+    {
+      "code": "00713",
+      "shares": 58,
+      "avg_cost": 57.66896551724138
+    },
+    {
+      "code": "0050",
+      "shares": 33,
+      "avg_cost": 100.37121212121212
+    },
+    {
+      "code": "00646",
+      "shares": 46,
+      "avg_cost": 73.63695652173914
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "ts": "2026-06-08 09:13:20",
+      "code": "00772B",
+      "name": "中信高評級公司債",
+      "side": "buy",
+      "lot_type": "odd",
+      "shares": 102,
+      "price": 33.55,
+      "gross": 3422.1,
+      "fee": 4.0,
+      "tax": 0.0,
+      "net": -3426.1,
+      "realized": 0.0
+    },
+    {
+      "id": 2,
+      "ts": "2026-06-08 09:13:20",
+      "code": "00713",
+      "name": "元大台灣高息低波",
+      "side": "buy",
+      "lot_type": "odd",
+      "shares": 58,
+      "price": 57.6,
+      "gross": 3340.8,
+      "fee": 4.0,
+      "tax": 0.0,
+      "net": -3344.8,
+      "realized": 0.0
+    },
+    {
+      "id": 3,
+      "ts": "2026-06-08 09:13:20",
+      "code": "0050",
+      "name": "元大台灣50",
+      "side": "buy",
+      "lot_type": "odd",
+      "shares": 33,
+      "price": 100.25,
+      "gross": 3308.25,
+      "fee": 4.0,
+      "tax": 0.0,
+      "net": -3312.25,
+      "realized": 0.0
+    },
+    {
+      "id": 4,
+      "ts": "2026-06-08 09:13:20",
+      "code": "00646",
+      "name": "元大S&P500",
+      "side": "buy",
+      "lot_type": "odd",
+      "shares": 46,
+      "price": 73.55,
+      "gross": 3383.3,
+      "fee": 4.0,
+      "tax": 0.0,
+      "net": -3387.3,
+      "realized": 0.0
+    }
+  ],
+  "watchlist": [
+    {
+      "code": "0050",
+      "name": "元大台灣50"
+    },
+    {
+      "code": "00635U",
+      "name": "期元大S&P黃金"
+    },
+    {
+      "code": "00646",
+      "name": "元大S&P500"
+    },
+    {
+      "code": "00679B",
+      "name": "元大美債20年"
+    },
+    {
+      "code": "00713",
+      "name": "元大台灣高息低波"
+    },
+    {
+      "code": "00772B",
+      "name": "中信高評級公司債"
+    },
+    {
+      "code": "00878",
+      "name": "國泰永續高股息"
+    },
+    {
+      "code": "00908",
+      "name": "富邦入息REITs+"
+    },
+    {
+      "code": "00919",
+      "name": "群益台灣精選高息"
+    },
+    {
+      "code": "00981A",
+      "name": "主動統一台股增長"
+    },
+    {
+      "code": "1718",
+      "name": "中纖"
+    },
+    {
+      "code": "2313",
+      "name": "華通"
+    },
+    {
+      "code": "2314",
+      "name": "台揚"
+    },
+    {
+      "code": "2330",
+      "name": "台積電"
+    },
+    {
+      "code": "2367",
+      "name": "燿華"
+    },
+    {
+      "code": "2408",
+      "name": "南亞科"
+    },
+    {
+      "code": "2454",
+      "name": "聯發科"
+    },
+    {
+      "code": "2603",
+      "name": "長榮"
+    },
+    {
+      "code": "3163",
+      "name": "波若威"
+    },
+    {
+      "code": "3305",
+      "name": "昇貿"
+    },
+    {
+      "code": "3481",
+      "name": "群創"
+    },
+    {
+      "code": "3491",
+      "name": "昇達科"
+    },
+    {
+      "code": "3711",
+      "name": "日月光投控"
+    },
+    {
+      "code": "6116",
+      "name": "彩晶"
+    },
+    {
+      "code": "6285",
+      "name": "啟碁"
+    },
+    {
+      "code": "6505",
+      "name": "台塑化"
+    },
+    {
+      "code": "6770",
+      "name": "力積電"
+    }
+  ],
+  "pending_orders": [
+    {
+      "id": 6,
+      "created_at": "2026-06-08 01:10:06",
+      "code": "00772B",
+      "name": "中信高評級公司債",
+      "side": "buy",
+      "lot_type": "odd",
+      "quantity": 102,
+      "limit_price": null,
+      "est_cost": 3447.52,
+      "status": "filled",
+      "note": "開盤成交 @ 33.55"
+    },
+    {
+      "id": 7,
+      "created_at": "2026-06-08 01:10:06",
+      "code": "00713",
+      "name": "元大台灣高息低波",
+      "side": "buy",
+      "lot_type": "odd",
+      "quantity": 58,
+      "limit_price": null,
+      "est_cost": 3463.7,
+      "status": "filled",
+      "note": "開盤成交 @ 57.6"
+    },
+    {
+      "id": 8,
+      "created_at": "2026-06-08 01:10:06",
+      "code": "0050",
+      "name": "元大台灣50",
+      "side": "buy",
+      "lot_type": "odd",
+      "quantity": 33,
+      "limit_price": null,
+      "est_cost": 3440.9500000000003,
+      "status": "filled",
+      "note": "開盤成交 @ 100.25"
+    },
+    {
+      "id": 9,
+      "created_at": "2026-06-08 01:10:06",
+      "code": "00646",
+      "name": "元大S&P500",
+      "side": "buy",
+      "lot_type": "odd",
+      "quantity": 46,
+      "limit_price": null,
+      "est_cost": 3440.2000000000003,
+      "status": "filled",
+      "note": "開盤成交 @ 73.55"
+    }
+  ],
+  "settings": {
+    "fee_rate": "0.001425",
+    "fee_discount": "1.0",
+    "fee_min_round": "20",
+    "fee_min_odd": "1",
+    "tax_rate": "0.003",
+    "etf_tax_rate": "0.001",
+    "enforce_hours": "1"
+  }
+}
