@@ -1,7 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
-"""PyInstaller spec — 凍結成 desktop/dist/TWStockSim.app（選單列 agent app）。
+"""PyInstaller spec — 凍結成 desktop/dist/SimStock.app（選單列 agent app）。
 
-從專案根目錄執行： pyinstaller desktop/twstock-sim.spec
+從專案根目錄執行： pyinstaller desktop/SimStock-app.spec
 """
 import os
 import sys
@@ -48,17 +48,17 @@ a = Analysis(
     noarchive=False,
 )
 pyz = PYZ(a.pure)
-exe = EXE(pyz, a.scripts, [], exclude_binaries=True, name="TWStockSim",
+exe = EXE(pyz, a.scripts, [], exclude_binaries=True, name="SimStock",
           debug=False, strip=True, upx=False, console=False)
-coll = COLLECT(exe, a.binaries, a.datas, strip=True, upx=False, name="TWStockSim")
+coll = COLLECT(exe, a.binaries, a.datas, strip=True, upx=False, name="SimStock")
 app = BUNDLE(
     coll,
-    name="TWStockSim.app",
+    name="SimStock.app",
     icon=icon,
-    bundle_identifier="com.rocavence.twstocksim",
+    bundle_identifier="com.rocavence.simstock",
     info_plist={
         "LSUIElement": True,  # 選單列 agent，不佔 Dock
-        "CFBundleName": "TWStockSim",
+        "CFBundleName": "SimStock",
         "CFBundleDisplayName": "台股模擬交易",
         "CFBundleShortVersionString": "0.1",
         "CFBundleVersion": "0.1",

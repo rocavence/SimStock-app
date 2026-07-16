@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# 從乾淨環境打包 TWStockSim.app（選單列 + 內建後端，單一自包含 .app）。
-# 用法：cd ~/Code/twstock-sim && desktop/build.sh
+# 從乾淨環境打包 SimStock.app（選單列 + 內建後端，單一自包含 .app）。
+# 用法：cd ~/Code/SimStock-app && desktop/build.sh
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -48,8 +48,8 @@ echo "==> 3/4 PyInstaller 打包"
 rm -rf build desktop/dist
 "$BUILD_VENV/bin/pyinstaller" --clean --noconfirm \
   --distpath desktop/dist --workpath build \
-  desktop/twstock-sim.spec
+  desktop/SimStock-app.spec
 
 echo "==> 4/4 完成"
-echo "    產出： $ROOT/desktop/dist/TWStockSim.app"
-echo "    開啟： open desktop/dist/TWStockSim.app"
+echo "    產出： $ROOT/desktop/dist/SimStock.app"
+echo "    開啟： open desktop/dist/SimStock.app"

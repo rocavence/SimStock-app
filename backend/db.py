@@ -11,7 +11,7 @@ from pathlib import Path
 
 # 凍結（PyInstaller）時 _MEIPASS 為唯讀，DB 改寫到使用者可寫目錄；開發時維持 repo data/
 if getattr(sys, "frozen", False):
-    _data_dir = Path.home() / "Library" / "Application Support" / "twstock-sim"
+    _data_dir = Path.home() / "Library" / "Application Support" / "SimStock-app"
     _data_dir.mkdir(parents=True, exist_ok=True)
     DB_PATH = _data_dir / "sim.db"
 else:
@@ -27,7 +27,7 @@ def _default_save_dir() -> Path:
 
 
 # 記住「資料來源路徑」的指標檔，放使用者家目錄 → 不隨 app 部署位置或 db 刪除而消失
-POINTER_FILE = Path.home() / ".twstock-sim" / "datasource.txt"
+POINTER_FILE = Path.home() / ".SimStock-app" / "datasource.txt"
 
 
 def _resolve_save_file() -> Path:

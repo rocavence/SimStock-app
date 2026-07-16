@@ -6,7 +6,7 @@
 
 開發執行：  desktop/.venv/bin/python desktop/app.py
 冒煙測試：  TWSTOCK_SMOKE=1 desktop/.venv/bin/python desktop/app.py   # 只測後端、不開 GUI
-打包：      desktop/build.sh  → 產出 desktop/dist/TWStockSim.app
+打包：      desktop/build.sh  → 產出 desktop/dist/SimStock.app
 """
 import json
 import os
@@ -22,17 +22,17 @@ if getattr(sys, "frozen", False):
     BASE = Path(sys._MEIPASS)
     MENUBAR_ICON = str(BASE / "menubar-icon.png")
     SAMPLE_SAVE = str(BASE / "sample-save.json")
-    APP_PATH = str(Path(sys.executable).resolve().parents[2])  # …/TWStockSim.app
+    APP_PATH = str(Path(sys.executable).resolve().parents[2])  # …/SimStock.app
 else:
     BASE = Path(__file__).resolve().parent.parent
     sys.path.insert(0, str(BASE))
     MENUBAR_ICON = str(Path(__file__).resolve().parent / "menubar-icon.png")
     SAMPLE_SAVE = str(Path(__file__).resolve().parent / "sample-save.json")
-    APP_PATH = "/Applications/TWStockSim.app"
+    APP_PATH = "/Applications/SimStock.app"
 
-APP_SUPPORT = Path.home() / "Library" / "Application Support" / "twstock-sim"
+APP_SUPPORT = Path.home() / "Library" / "Application Support" / "SimStock-app"
 CONFIG_FILE = APP_SUPPORT / "config.json"
-LAUNCH_AGENT = Path.home() / "Library" / "LaunchAgents" / "com.rocavence.twstocksim.plist"
+LAUNCH_AGENT = Path.home() / "Library" / "LaunchAgents" / "com.rocavence.simstock.plist"
 DEFAULT_PORT = 8888
 
 
@@ -111,7 +111,7 @@ def set_login_item(on: bool) -> None:
             '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" '
             '"http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n'
             '<plist version="1.0"><dict>\n'
-            '  <key>Label</key><string>com.rocavence.twstocksim</string>\n'
+            '  <key>Label</key><string>com.rocavence.simstock</string>\n'
             '  <key>ProgramArguments</key>\n'
             f'  <array><string>/usr/bin/open</string><string>-a</string><string>{APP_PATH}</string></array>\n'
             '  <key>RunAtLoad</key><true/>\n'
@@ -158,7 +158,7 @@ class _WindowAutoHide(NSObject):
         note.object().orderOut_(None)
 
 
-class TwstockApp(rumps.App):
+class SimStockApp(rumps.App):
     def __init__(self):
         if os.path.exists(MENUBAR_ICON):
             super().__init__("台股", icon=MENUBAR_ICON, template=True, quit_button=None)
@@ -368,7 +368,7 @@ class TwstockApp(rumps.App):
 def main():
     if not FIRST_RUN:
         start_backend(get_port())
-    TwstockApp().run()
+    SimStockApp().run()
 
 
 if __name__ == "__main__":

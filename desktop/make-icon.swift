@@ -1,6 +1,6 @@
 #!/usr/bin/env swift
 //
-// 產生 TWStockSim 的 1024×1024 app icon → desktop/icon-1024.png
+// 產生 SimStock 的 1024×1024 app icon → desktop/icon-1024.png
 // 簡約版：深色交易感 squircle + 三根上升 K 棒（紅漲、綠跌）。
 // 執行：swift desktop/make-icon.swift   （於專案根目錄）
 //

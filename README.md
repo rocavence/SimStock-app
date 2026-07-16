@@ -1,14 +1,14 @@
-# 台股模擬交易 twstock-sim
+# 台股模擬交易 SimStock-app
 
 本機 Web App，模擬台股整股 + 盤中零股交易：轉入存款 → 下單 → 看持股損益，盤中即時抓 TWSE 報價。
 
 ## 桌面 App 下載
 
-到 [Releases](../../releases/latest) 下載 `TWStockSim-*-macos-arm64.zip`，解壓得到 `TWStockSim.app`。
+到 [Releases](../../releases/latest) 下載 `SimStock-*-macos-arm64.zip`，解壓得到 `SimStock.app`。
 
 > **僅支援 Apple Silicon Mac（macOS 11+）**，未做 Apple 簽章，首次開啟需解隔離：
 > ```bash
-> xattr -dr com.apple.quarantine /path/to/TWStockSim.app
+> xattr -dr com.apple.quarantine /path/to/SimStock.app
 > ```
 > 或第一次開被擋時：系統設定 → 隱私權與安全性 → 仍要開啟。
 
@@ -23,7 +23,7 @@
 
 ## 安裝與啟動
 ```bash
-cd ~/Code/twstock-sim
+cd ~/Code/SimStock-app
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn backend.main:app --port 8888 --reload

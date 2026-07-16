@@ -1,6 +1,6 @@
 """台股模擬交易 — FastAPI 後端 + 即時報價背景輪詢。
 
-啟動：cd ~/Projects/twstock-sim && uvicorn backend.main:app --reload
+啟動：cd ~/Code/SimStock-app && uvicorn backend.main:app --reload
 """
 import asyncio
 import sys
