@@ -87,6 +87,10 @@ def get_conn() -> sqlite3.Connection:
 
 
 def init_db():
+    # 先記錄 DB 的修改時間。schema 初始化/設定預設值本身會觸發寫入，
+    # 因此不能在那些操作之後才拿 mtime 和 JSON 存檔比較。
+    db_mtime = DB_PATH.stat().st_mtime if DB_PATH.exists() else 0
+    save_mtime = SAVE_FILE.stat().st_mtime if SAVE_FILE.exists() else 0
     DB_PATH.parent.mkdir(exist_ok=True)
     conn = get_conn()
     conn.executescript(
@@ -160,8 +164,11 @@ def init_db():
     has_account = conn.execute("SELECT 1 FROM account WHERE id=1").fetchone() is not None
     conn.commit()
     conn.close()
-    # db 為空但有存檔 → 自動還原（防 db 被刪 / 換機）
-    if not has_account and SAVE_FILE.exists():
+    # DB 為空，或自動存檔比 DB 新 → 自動還原。
+    # 每次異動都是先提交 SQLite、再呼叫 save_snapshot()，所以較新的
+    # save.json 代表上次寫入在寫入備份前中斷或切換過資料庫時留下的完整狀態。
+    # 這可避免桌面版的舊 SQLite 遮蔽較新的自動存檔。
+    if SAVE_FILE.exists() and (not has_account or save_mtime > db_mtime):
         load_snapshot()
 
 
